@@ -1,0 +1,8 @@
+# Core dependencies
+tensorflow>=2.2.0  # TensorFlow with compatibility for modern models
+keras>=2.2.0       # Keras as a backend
+
+# Additional required libraries
+keras-applications>=1.0.7,<=1.0.8  # Specific version range for compatibility
+image-classifiers==1.0.*           # Image classification utilities
+efficientnet==1.0.*                # EfficientNet models for Keras
