@@ -1,0 +1,44 @@
+path:  "C:\\Users\\TUF\\Desktop\\Irene\\ML\\Project_test_change1_only_183"  # dataset root dir
+train: "train/images"  # train images
+val:   "val/images"  # val images
+test:  "test/images" #test images
+
+
+names: 
+  0: cucumber
+  1: chicken
+  2: shrimp
+  3: brocolli
+  4: bean
+  5: salmon
+  6: pork
+  7: rice
+  8: pumpkin
+  9: egg_dish
+  10: nut
+  11: carrot
+  12: king_oyster
+  13: vegetable
+  14: winter_melon
+  15: mango
+  16: avocado
+  17: baby_corn
+  18: beef
+  19: sprout
+  20: eggplant
+  21: mushroom
+  22: potato
+  23: brocoli
+  24: corn
+  25: toast
+  26: onion
+  27: cabbage
+  28: egg
+  29: green_pepper
+  30: green_bean
+  31: tofu
+  32: fish
+  33: tomato
+  34: lemon
+  35: yam
+  
