@@ -2,9 +2,11 @@
 ```bash
 python regression.py
 ```
-* Refered dataset:
-    1. train.csv: data used to train regression model
-    2. test.csv: data used to test regression model
+* Referred dataset:
+    1. train.xml: manually labeled data
+    2. test.xml: data processed by segmentation model
+    1. train.csv: data used to train regression model, transferred from train.xml
+    2. test.csv: data used to test regression model, transferred from test.xml
        
 * Illustration of other files:
     1. gen_test_csv.py: generate test.csv from test.xml, which comes from segmentation part
