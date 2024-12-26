@@ -2,7 +2,6 @@ import xml.etree.ElementTree as ET
 import pandas as pd
 import numpy as np
 
-# 定义标签顺序
 food_labels = [
     "cucumber", "chicken", "shrimp", "brocolli", "bean", "salmon", "pork", "rice", 
     "pumpkin", "egg_dish", "nut", "carrot", "king_oyster", "vegetable", 
@@ -290,7 +289,7 @@ food_nutrients = {
 
 
 def calculate_polygon_area(points):
-    """计算多边形面积（Shoelace公式）。"""
+    """Compute the area of a polygon using the Shoelace formula."""
     n = len(points)
     if n < 3:
         return 0
@@ -302,7 +301,7 @@ def calculate_polygon_area(points):
     return abs(area) / 2
 
 def parse_xml_to_dataframe_with_ratios(xml_file):
-    """解析 XML 文件，并计算各标签的多边形面积比例。"""
+    """Parse an XML file and return a DataFrame with label ratios."""
     tree = ET.parse(xml_file)
     root = tree.getroot()
 
@@ -311,61 +310,44 @@ def parse_xml_to_dataframe_with_ratios(xml_file):
 
     for image in root.findall('image'):
         image_name = image.get('name')
-        # if(image_name.split('.')[0] in test_names): continue;
-        print(image_name);
-        label_areas = {label: 0 for label in food_labels}  # 初始化每张图片的标签面积
-        total_area = 0  # 初始化总面积
-        label_areas["high"] = 0;
+        print(image_name)
+        label_areas = {label: 0 for label in food_labels} 
+        total_area = 0  
+        label_areas["high"] = 0
 
         for polygon in image.findall('polygon'):
             label = polygon.get('label')
             if label not in food_labels:
-                continue  # 跳过未定义标签
+                continue 
             points = polygon.get('points')
             points = [tuple(map(float, point.split(','))) for point in points.split(';')]
             area = calculate_polygon_area(points)
             label_areas[label] += area
             
-            # total_area += area;
             if(label != "high"): total_area += area
-            # if(label_areas["high"] != 0): label_areas["high"] = total_area;
-
-        # 计算每个标签的面积比例
+          
         if total_area > 0:
             label_ratios = {label: label_areas[label] / total_area for label in food_labels}
         else:
-            label_ratios = {label: 0 for label in food_labels}  # 如果没有多边形，比例全为 0
+            label_ratios = {label: 0 for label in food_labels}  
 
         image_names.append(image_name)
         areas.append([label_ratios[label] for label in food_labels])
 
-    # for food in food_kcal_per_ml.keys():
-    #     if(food in ["salmon", "pumpkin", "rice", "king_oyster", "potato", "brocolli"]): continue;
-    #     image_name = food
-    #     label_areas = {label: 0 for label in food_labels}
-    #     label_areas[food] = 1;
-    #     image_names.append(image_name)
-    #     areas.append([label_areas[label] for label in food_labels]);
-
-    
-
-    # 构建 DataFrame
     df = pd.DataFrame(areas, columns=food_labels)
-    df.insert(0, 'image_name', image_names)  # 添加图片名称列
+    df.insert(0, 'image_name', image_names)
 
-    # 删除图片扩展名并添加卡路里列
-    df['image_name'] = df['image_name'].apply(lambda x: x.split('.')[0])  # 删除扩展名
-    df['calories'] = df['image_name'].map(filename_to_calorie)  # 映射卡路里数据
-    # 初始化protein, fat, carbs列为空的Series
+    df['image_name'] = df['image_name'].apply(lambda x: x.split('.')[0]) 
+    df['calories'] = df['image_name'].map(filename_to_calorie)  
+
     df['protein'] = 0
     df['fat'] = 0
     df['carbs'] = 0
 
-        # 假设food_nutrients是一个字典，包含每种食物的营养信息
+      
     for food, nutrients in food_nutrients.items():
             if food in ["salmon", "pumpkin", "rice", "king_oyster", "potato", "brocolli"]: continue;
-            if food in df.columns:  # 确保df中包含该食物的列
-                # 更新对应的protein, fat, carbs列
+            if food in df.columns:  
                 df['protein'] += df[food] * nutrients['protein']
                 df['fat'] += df[food] * nutrients['fat']
                 df['carbs'] += df[food] * nutrients['carbs']
@@ -374,13 +356,9 @@ def parse_xml_to_dataframe_with_ratios(xml_file):
     return df
     
 
-# 调用函数并保存结果
 xml_file = 'test.xml'
-# xml_file = 'train_high.xml'
 df = parse_xml_to_dataframe_with_ratios(xml_file)
 
-# 打印前几行查看结果
 print(df.head())
-# csv_file = 'gen_data_high_booleanv2.csv'
 csv_file = 'test.csv'
 df.to_csv(csv_file, index=False, encoding='utf-8-sig')
