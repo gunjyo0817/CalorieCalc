@@ -1,0 +1,26 @@
+MAE: 64.70, RMSE: 86.56, MAPE: 12.72%, R^2: -0.22
+Accuracy (<50): 50.00%
+Accuracy (<100): 75.00%
+Accuracy (<150): 95.00%
+
+Sorted Predictions:
+Filename: 711繽紛鮮蔬烤雞便當_1, Ground Truth: tensor([371.]), Prediction: 423.5079345703125
+Filename: 08清新脫俗素餐盒, Ground Truth: tensor([384.]), Prediction: 284.1675109863281
+Filename: 雞胸餐02, Ground Truth: tensor([400.5000]), Prediction: 386.5134582519531
+Filename: 巴沙魚433, Ground Truth: tensor([433.]), Prediction: 533.1256713867188
+Filename: 里肌豬餐04, Ground Truth: tensor([459.]), Prediction: 430.62738037109375
+Filename: 里肌豬餐02, Ground Truth: tensor([459.]), Prediction: 447.2015075683594
+Filename: 牛肉餐01, Ground Truth: tensor([460.]), Prediction: 363.4002380371094
+Filename: 牛肉餐03, Ground Truth: tensor([460.]), Prediction: 449.8277587890625
+Filename: 蒜泥豬肉477, Ground Truth: tensor([477.]), Prediction: 517.4617919921875
+Filename: 雞腿餐01, Ground Truth: tensor([493.7000]), Prediction: 485.4032897949219
+Filename: 雞腿餐03, Ground Truth: tensor([493.7000]), Prediction: 483.2275695800781
+Filename: 不用客氣滿滿肉片, Ground Truth: tensor([520.]), Prediction: 631.755615234375
+Filename: 清滷牛腱, Ground Truth: tensor([526.5000]), Prediction: 646.2432250976562
+Filename: 來自挪威的烤薄鹽鯖魚, Ground Truth: tensor([530.]), Prediction: 545.540771484375
+Filename: 01舒肥大肌雞胸肉, Ground Truth: tensor([534.]), Prediction: 615.3963623046875
+Filename: 水煮嫩雞胸, Ground Truth: tensor([545.6000]), Prediction: 641.8298950195312
+Filename: 日式煎豆腐餐盒, Ground Truth: tensor([553.6000]), Prediction: 418.0599365234375
+Filename: 舒肥原味雞胸31, Ground Truth: tensor([579.]), Prediction: 551.7745361328125
+Filename: 04台灣豬就是讚, Ground Truth: tensor([652.]), Prediction: 647.4407348632812
+Filename: 牛腱8, Ground Truth: tensor([685.]), Prediction: 455.62420654296875
