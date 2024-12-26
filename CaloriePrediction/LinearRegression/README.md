@@ -1,5 +1,7 @@
 * To directly see the result of calorie prediction, please run: 
+```bash
 python regression.py
+```
 * Refered dataset:
     1. train.csv: data used to train regression model
     2. test.csv: data used to test regression model
