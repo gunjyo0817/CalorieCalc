@@ -12,15 +12,15 @@ import xml.etree.ElementTree as ET
 import math
 
 
-ROOT_PATH = "/Users/yichen/Desktop/School/ML/FinalProject/CaloriePrediction/"
+ROOT_PATH = "../../dataset/CaloriePrediction/"
 
-train_v2_xml_path = os.path.join(ROOT_PATH, 'final_v2/train_high.xml')
-test_v2_xml_path = os.path.join(ROOT_PATH, 'final_v2/v2_test_ground_truth_with_high.xml')
-train_image_folder = os.path.join(ROOT_PATH, 'with_cal_origin')
-test_v2_image_folder = os.path.join(ROOT_PATH, 'final_v2/v2_test_images')
+train_xml_path = os.path.join(ROOT_PATH, 'training_data.xml')
+test_xml_path = os.path.join(ROOT_PATH, 'testing_data.xml')
+train_image_folder = os.path.join(ROOT_PATH, 'train_images')
+test_image_folder = os.path.join(ROOT_PATH, 'test_images')
 
 food_calorie_path = os.path.join(ROOT_PATH, 'food_calorie.xlsx')
-filename_calorie_path = os.path.join(ROOT_PATH, 'final_v2/v2_calories.xlsx')
+filename_calorie_path = os.path.join(ROOT_PATH, 'image_calorie.xlsx')
 food_calorie_df = pd.read_excel(food_calorie_path)
 filename_calorie_df_train = pd.read_excel(filename_calorie_path, sheet_name='train')
 filename_calorie_df_test = pd.read_excel(filename_calorie_path, sheet_name='test')
@@ -90,8 +90,8 @@ def prepare_data(filename_df, folder_path, xml_path):
     return np.array(X), np.array(y)
 
 # Extract training and testing data
-X_train_full, y_train_full = prepare_data(filename_calorie_df_train, train_image_folder, train_v2_xml_path)
-X_test, y_test = prepare_data(filename_calorie_df_test, test_v2_image_folder, test_v2_xml_path)
+X_train_full, y_train_full = prepare_data(filename_calorie_df_train, train_image_folder, train_xml_path)
+X_test, y_test = prepare_data(filename_calorie_df_test, test_image_folder, test_xml_path)
 
 # Split training data into training and validation sets
 X_train, X_val, y_train, y_val = train_test_split(X_train_full, y_train_full, test_size=0.2, random_state=42)
